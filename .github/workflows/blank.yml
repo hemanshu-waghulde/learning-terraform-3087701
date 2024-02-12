@@ -30,4 +30,4 @@ jobs:
           forgerock.loginurl: "https://www.google.com"
           
       - name: Set the value in bash
-        run: echo cat appConfig.json
+        run: gc appConfig.json
