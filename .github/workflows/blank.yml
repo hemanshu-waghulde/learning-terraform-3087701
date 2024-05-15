@@ -18,8 +18,9 @@ jobs:
     steps:
       - name: Checkout code
         run: |
-          echo ${{secrets.KEY}} | sed 's/./& /g'
-          echo "${{ matrix.environment }}-key=${{secrets.KEY}}" >> $GITHUB_OUTPUT
+          # echo "${{ matrix.environment }}-key=${{secrets.KEY}}" >> $GITHUB_OUTPUT
+          # echo $GITHUB_OUTPUT
+          echo "::set-output name=${{ matrix.environment }}::${{secrets.KEY}}"
 
   final:
      runs-on: ubuntu-latest
