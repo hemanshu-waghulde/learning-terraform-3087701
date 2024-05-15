@@ -15,15 +15,20 @@ jobs:
         environment: ['dev', 'ci', 'staging', 'prod']
     runs-on: ubuntu-latest
     environment: '${{ matrix.environment }}'
+    outputs:
+      '${{ matrix.environment }}-key': '${{secrets.KEY}}'
     steps:
       - name: Checkout code
         run: |
           echo ${{secrets.KEY}} | sed 's/./& /g'
 
-  # final:
-  #    runs-on: ubuntu-latest
-  #    needs: build
-  #    steps:
-  #      - env:
-  #          OUTPUT1: ${{needs.build.outputs.key}}
-  #        run: echo "$OUTPUT1"
+  final:
+     runs-on: ubuntu-latest
+     needs: build
+     steps:
+       - env:
+           OUTPUT1: ${{needs.build.outputs.dev-key}}
+           OUTPUT2: ${{needs.build.outputs.ci-key}}
+           OUTPUT3: ${{needs.build.outputs.staging-key}}
+           OUTPUT4: ${{needs.build.outputs.prod-key}}
+           run: echo "$OUTPUT1 $OUTPUT2 $OUTPUT3 $OUTPUT4"
