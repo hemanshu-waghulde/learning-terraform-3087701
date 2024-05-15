@@ -31,4 +31,4 @@ jobs:
      steps:
        - name: Test
          run: |
-           echo "${{needs.build.outputs.dev-key}} ${{needs.build.outputs.ci-key}} ${{needs.build.outputs.staging-key}} ${{needs.build.outputs.prod-key}}"
+           echo ${{needs.build.outputs.dev-key}} ${{needs.build.outputs.ci-key}} ${{needs.build.outputs.staging-key}} ${{needs.build.outputs.prod-key}}
