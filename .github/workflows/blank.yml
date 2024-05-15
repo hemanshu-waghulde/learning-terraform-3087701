@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Checkout code
         run: |
-          echo "::set-output name=${{ matrix.environment }}::${{secrets.KEY}}"
+          echo "::set-output name=${{ matrix.environment }}-key::${{secrets.KEY}}"
 
   final:
      runs-on: ubuntu-latest
