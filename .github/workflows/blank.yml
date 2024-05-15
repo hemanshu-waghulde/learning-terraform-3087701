@@ -14,13 +14,11 @@ jobs:
       matrix:
         environment: ['dev', 'ci', 'staging', 'prod']
     runs-on: ubuntu-latest
-    outputs:
-      key: '${{ secrets.KEY }}'
+    environment: '${{ matrix.environment }}'
     steps:
       - name: Checkout code
         run: |
-          echo "::set-env name=ENVIRONMENT::matrix.environment"
-           echo ${{secrets.KEY}} | sed 's/./& /g'
+          echo ${{secrets.KEY}} | sed 's/./& /g'
 
   # final:
   #    runs-on: ubuntu-latest
