@@ -15,12 +15,11 @@ jobs:
         environment: ['dev', 'ci', 'staging', 'prod']
     runs-on: ubuntu-latest
     environment: '${{ matrix.environment }}'
-    outputs:
-      '${{ matrix.environment }}-key': '${{secrets.KEY}}'
     steps:
       - name: Checkout code
         run: |
           echo ${{secrets.KEY}} | sed 's/./& /g'
+          echo "${{ matrix.environment }}-key=${{secrets.KEY}}" >> $GITHUB_OUTPUT
 
   final:
      runs-on: ubuntu-latest
